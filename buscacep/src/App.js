@@ -5,11 +5,12 @@ import './App.css'
 export default function App() {
 
   const [pegarCep, setPegarCep] = useState('')
+  const [dadosViaCep, setDadosViaCep] = useState('')
   
   async function dadosFormulario(e){
     e.preventDefault()
     const resposta = await ApiBuscaCep.get(`/${pegarCep}/json`)
-    console.log(resposta.data)   
+    setDadosViaCep(resposta.data)   
   }
 
   return (
@@ -24,6 +25,9 @@ export default function App() {
         />
         <button type='submit'>Enviar</button>
       </form>
+      <p>A Rua é: {dadosViaCep.logradouro} </p>
+      <p>A Cidade é: {dadosViaCep.localidade}</p>
+      <p>O Estado é: {dadosViaCep.uf}</p>
     </div>
 
   )
