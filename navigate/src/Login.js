@@ -30,8 +30,6 @@ export default function Login() {
         } else {
             toast.error('Usuario/Senha incorretos')
         }
-
-
     }
 
     return (
