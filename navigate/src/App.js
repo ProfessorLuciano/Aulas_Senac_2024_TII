@@ -1,9 +1,15 @@
 
+//importação do conteiner de regras do react-toastify
+import { ToastContainer } from 'react-toastify'
+import Rotas from './Rotas.router'
 
 export default function App() {
   return (
     <div>
-      <h1>Navigate</h1>
+      <Rotas />
+      <ToastContainer
+        autoClose={5000}
+      />
     </div>
   )
 }
