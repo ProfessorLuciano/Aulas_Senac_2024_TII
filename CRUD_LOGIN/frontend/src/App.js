@@ -1,9 +1,11 @@
-import './App.css'
+import React from 'react'
+
+import Rotas from './Routes'
 
 export default function App() {
   return (
     <div>
-      <h1>Crud Login</h1>
+      <Rotas />
     </div>
       
   )
