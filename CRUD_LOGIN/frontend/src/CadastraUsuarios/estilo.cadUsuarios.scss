@@ -1,0 +1,60 @@
+.conteinerCadastroUsuariosGeral {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    h1 {
+        width: 100%;
+        background-color: #08d9f4;
+        text-align: center;
+        color: #ffffff;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 1rem;
+        width: 100%;
+
+        input {
+            width: 70%;
+            height: 3rem;
+            margin-top: 0.5rem;
+            border-radius: 0.8rem;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        button {
+            width: 30%;
+            background-color: #080cf4;
+            height: 3rem;
+            margin-top: 0.5rem;
+            border-radius: 0.8rem;
+            border-width: 0;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
+    }
+
+    .buttonVoltar {
+        width: 30%;
+        text-decoration: none;
+        background-color: #f4c908;
+        height: 3rem;
+        margin-top: 0.5rem;
+        border-radius: 0.8rem;
+        border-width: 0;
+        text-align: center;
+        font-size: 1.2rem;
+        padding: 0.7rem;
+        font-weight: bold;
+        color: #ffffff;
+    }
+}
