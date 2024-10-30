@@ -5,7 +5,7 @@ import NAutenticado from './nAutenticado.routes'
 
 
 export default function Rotas(){
-    const autenticado = false
+    const autenticado = true
 
     return(
         autenticado === true ? <Autenticado /> : <NAutenticado />
