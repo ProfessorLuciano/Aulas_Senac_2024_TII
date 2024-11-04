@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom'
 
 import './estilo.inicio.scss'
 
-export default function Inicio() {
+
+export default function Inicio() { 
+
     return (
         <div className='conteinerInicioGeral'>
             <h1>Pagina de Inicio CRUD Login</h1>
