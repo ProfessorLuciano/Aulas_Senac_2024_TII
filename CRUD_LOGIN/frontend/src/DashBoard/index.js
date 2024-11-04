@@ -49,7 +49,11 @@ export default function DashBoard() {
                                             <td>{item.id}</td>
                                             <td>{item.nome}</td>
                                             <td>{item.email}</td>
-                                            <td></td>
+                                            {!item.grupos ?
+                                                <td>Vazio</td>
+                                                :
+                                                <td>{item.grupos.nome}</td>
+                                            }
                                             <td><button>Editar</button></td>
                                             <td><button>Apagar</button></td>
                                         </tr>

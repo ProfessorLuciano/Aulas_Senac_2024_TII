@@ -23,7 +23,13 @@ class UsuariosServices {
             select: {
                 id: true,
                 nome: true,
-                email: true
+                email: true,
+                idGrupos: true,
+                grupos: {
+                    select: {
+                        nome: true
+                    }
+                }
             }
         })
         return resposta
