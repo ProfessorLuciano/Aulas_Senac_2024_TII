@@ -22,10 +22,16 @@ export default function DashBoard() {
     }, [dadosUsuarios])
 
     async function apagaUsuarios(id) {
-        await apiLocal.delete(`/ApagarUsuarios/${id}`)
-        toast.success('Registro Apagado com Sucesso', {
-            toastId: 'ToastId'
-        })
+        try {
+            await apiLocal.delete(`/ApagarUsuarios/${id}`)
+            toast.success('Registro Apagado com Sucesso', {
+                toastId: 'ToastId'
+            })
+        } catch (err) {
+            toast.error('Erro ao Comunicar com BackEnd', {
+                toastId: 'ToastId'
+            })
+        }
     }
 
     return (
