@@ -38,6 +38,7 @@ export default function DashBoard() {
                                 <th>ID</th>
                                 <th>Nome</th>
                                 <th>Email</th>
+                                <th>Grupo</th>
                                 <th>Edita</th>
                                 <th>Apaga</th>
                             </tr>
@@ -48,6 +49,7 @@ export default function DashBoard() {
                                             <td>{item.id}</td>
                                             <td>{item.nome}</td>
                                             <td>{item.email}</td>
+                                            <td></td>
                                             <td><button>Editar</button></td>
                                             <td><button>Apagar</button></td>
                                         </tr>
