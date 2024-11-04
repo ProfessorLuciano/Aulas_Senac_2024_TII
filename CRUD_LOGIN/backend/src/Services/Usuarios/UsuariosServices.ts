@@ -7,7 +7,7 @@ interface cadUsuarios {
 }
 
 class UsuariosServices {
-    async cadastrarUsuarios({nome, email,password}: cadUsuarios){
+    async cadastrarUsuarios({ nome, email, password }: cadUsuarios) {
         await prismaClient.cadastarUsuarios.create({
             data: {
                 nome: nome,
@@ -15,10 +15,10 @@ class UsuariosServices {
                 senha: password
             }
         })
-        return ({dados: 'Cadastro Efetuado Com Sucesso'})
+        return ({ dados: 'Cadastro Efetuado Com Sucesso' })
     }
 
-    async consultarUsuarios(){
+    async consultarUsuarios() {
         const resposta = await prismaClient.cadastarUsuarios.findMany({
             select: {
                 id: true,
@@ -33,6 +33,15 @@ class UsuariosServices {
             }
         })
         return resposta
+    }
+
+    async apagarUsuarios(id: string) {
+        await prismaClient.cadastarUsuarios.delete({
+            where: {
+                id: id
+            }
+        })
+        return ({dados: 'Registro Apagado com Sucesso'})
     }
 }
 

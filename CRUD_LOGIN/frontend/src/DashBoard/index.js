@@ -21,6 +21,13 @@ export default function DashBoard() {
         }
     }, [dadosUsuarios])
 
+    async function apagaUsuarios(id) {
+        await apiLocal.delete(`/ApagarUsuarios/${id}`)
+        toast.success('Registro Apagado com Sucesso', {
+            toastId: 'ToastId'
+        })
+    }
+
     return (
         <>
             {dadosUsuarios.length === 0
@@ -55,7 +62,7 @@ export default function DashBoard() {
                                                 <td>{item.grupos.nome}</td>
                                             }
                                             <td><button>Editar</button></td>
-                                            <td><button>Apagar</button></td>
+                                            <td><button type='submit' onClick={() => apagaUsuarios(item.id)}>Apagar</button></td>
                                         </tr>
                                     </>
                                 )
