@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react'
 import './estilo.dashboard.scss'
 import { toast } from 'react-toastify'
 import apiLocal from './../Api/apiLocal'
+import { Link } from 'react-router-dom'
 
 export default function DashBoard() {
-
+    
     const [dadosUsuarios, setDadosUsuarios] = useState([''])
 
     useEffect(() => {
@@ -67,7 +68,7 @@ export default function DashBoard() {
                                                 :
                                                 <td>{item.grupos.nome}</td>
                                             }
-                                            <td><button>Editar</button></td>
+                                            <td><Link to='/EditarUsuarios'>Editar</Link></td>
                                             <td><button type='submit' onClick={() => apagaUsuarios(item.id)}>Apagar</button></td>
                                         </tr>
                                     </>
