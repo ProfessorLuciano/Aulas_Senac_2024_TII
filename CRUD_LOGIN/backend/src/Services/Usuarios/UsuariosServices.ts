@@ -38,13 +38,27 @@ class UsuariosServices {
         return resposta
     }
 
+    async consultarUsuariosUnico(id: string) {
+        const resposta = await prismaClient.cadastarUsuarios.findFirst({
+            where: {
+                id: id
+            },
+            select: {
+                nome: true,
+                email: true,
+                senha: true
+            }
+        })
+        return resposta
+    }
+
     async apagarUsuarios(id: string) {
         await prismaClient.cadastarUsuarios.delete({
             where: {
                 id: id
             }
         })
-        return ({dados: 'Registro Apagado com Sucesso'})
+        return ({ dados: 'Registro Apagado com Sucesso' })
     }
 }
 

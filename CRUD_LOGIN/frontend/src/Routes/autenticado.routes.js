@@ -9,8 +9,7 @@ export default function Autenticado() {
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={< DashBoard />} />
-                <Route path='/EditarUsuarios' element={< EditarUsuarios />} />
-
+                <Route path='/EditarUsuarios/:id' element={< EditarUsuarios />} />
                 
                 <Route path='*' element={< DashBoard />} />
             </Routes>

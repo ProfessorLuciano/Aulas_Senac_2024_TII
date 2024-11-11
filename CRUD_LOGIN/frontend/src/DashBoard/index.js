@@ -68,7 +68,7 @@ export default function DashBoard() {
                                                 :
                                                 <td>{item.grupos.nome}</td>
                                             }
-                                            <td><Link to='/EditarUsuarios'>Editar</Link></td>
+                                            <td><Link to={`/EditarUsuarios/${item.id}`}>Editar</Link></td>
                                             <td><button type='submit' onClick={() => apagaUsuarios(item.id)}>Apagar</button></td>
                                         </tr>
                                     </>
