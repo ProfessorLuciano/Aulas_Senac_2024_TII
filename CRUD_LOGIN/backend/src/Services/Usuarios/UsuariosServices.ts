@@ -7,6 +7,12 @@ interface cadUsuarios {
     password: string
 }
 
+interface AlterarUsuarios {
+    id: string,
+    nome: string,
+    email: string
+}
+
 class UsuariosServices {
     async cadastrarUsuarios({ nome, email, password }: cadUsuarios) {
 
@@ -50,6 +56,19 @@ class UsuariosServices {
             }
         })
         return resposta
+    }
+
+    async alterarDadosUsuarios({ id, nome, email }: AlterarUsuarios) {
+        await prismaClient.cadastarUsuarios.update({
+            where: {
+                id: id
+            },
+            data: {
+                nome: nome,
+                email: email
+            }
+        })
+        return ({ dados: 'Cadastro Alterado Com Sucesso' })
     }
 
     async apagarUsuarios(id: string) {
