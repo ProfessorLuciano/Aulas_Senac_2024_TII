@@ -1,0 +1,31 @@
+- instalação backend
+npm init -y
+- instalando o typescript
+npm install typescript --save-dev
+- instalando o express
+npm install express
+npm install @types/express --save-dev
+- inicializando o typescript
+npx tsc --init
+- instalando o modo de script typescript para subir o servidor
+npm install ts-node-dev --save-dev
+- instalando tratativas de erros
+npm install express-async-errors
+- liberar para qualquer ip acessar
+npm install cors
+npm install @types/cors --save-dev
+- instalar o Prisma para migrate de base de dados
+npm install prisma
+npm install @prisma/client
+npx prisma init
+- Criptografar senhas
+npm install bcryptjs
+npm install @types/bcryptjs --save-dev
+- Token JWT
+npm install jsonwebtoken
+npm install @types/jsonwebtoken --save-dev 
+- Acessar as variaveis de ambiente
+npm install dotenv
+- Biblioteca de Imagens
+npm install multer
+npm install @types/multer --save-dev
