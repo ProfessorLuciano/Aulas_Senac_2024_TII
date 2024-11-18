@@ -69,6 +69,7 @@ export default function EditarUsuarios() {
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 <button type='submit'>Enviar</button>
+                <button type='submit' className='buttonVoltar' onClick={() => mudarTela('/')}>Voltar</button>
             </form>
         </div>
     )
