@@ -10,14 +10,14 @@ const router = Router()
 
 //Criação das Rotas de End Point
 //Rotas de Usuarios
-router.post('/CadastrarUsuarios', new UsuariosControllers().cadastrarUsuarios)
+router.post('/CadastrarUsuarios', estaAutenticado, new UsuariosControllers().cadastrarUsuarios)
 router.get('/ConsultarUsuarios', estaAutenticado, new UsuariosControllers().consultarUsuarios)
-router.post('/ConsultarUsuariosUnico', new UsuariosControllers().consultarUsuariosUnico)
-router.put('/AlterarDadosUsuarios', new UsuariosControllers().alterarDadosUsuarios)
-router.delete('/ApagarUsuarios/:id', new UsuariosControllers().apagarUsuarios)
+router.post('/ConsultarUsuariosUnico', estaAutenticado, new UsuariosControllers().consultarUsuariosUnico)
+router.put('/AlterarDadosUsuarios', estaAutenticado, new UsuariosControllers().alterarDadosUsuarios)
+router.delete('/ApagarUsuarios/:id', estaAutenticado, new UsuariosControllers().apagarUsuarios)
 
 //Rotas de Grupos
-router.post('/CadastrarGrupos', new GruposControllers().cadastrarGrupos)
+router.post('/CadastrarGrupos', estaAutenticado, new GruposControllers().cadastrarGrupos)
 
 //Roras de Login
 router.post('/LoginUsuarios', new LoginUsuariosControllers().loginUsuarios)
