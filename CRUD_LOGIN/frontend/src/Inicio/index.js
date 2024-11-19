@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import './estilo.inicio.scss'
 
 
-export default function Inicio() { 
+export default function Inicio() {
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
     return (
         <div className='conteinerInicioGeral'>
@@ -14,11 +17,15 @@ export default function Inicio() {
                 <input
                     type="text"
                     placeholder='Digite o E-mail'
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                 />
 
                 <input
                     type="password"
                     placeholder='Digite a Senha'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                 />
 
                 <button>Enviar</button>
