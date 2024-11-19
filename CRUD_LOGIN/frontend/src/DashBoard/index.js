@@ -8,10 +8,18 @@ export default function DashBoard() {
     
     const [dadosUsuarios, setDadosUsuarios] = useState([''])
 
+    const iToken = localStorage.getItem('@token')
+    const token = JSON.parse(iToken)    
+
     useEffect(() => {
         try {
             async function consultarDadosusuarios() {
-                const resposta = await apiLocal.get('/ConsultarUsuarios')
+                const resposta = await apiLocal.get('/ConsultarUsuarios', {
+                    headers: {
+                       // Authorization: 'Bearer ' + `${token}`
+                        Authorization: `Bearer ${token}`
+                    }
+                })
                 setDadosUsuarios(resposta.data)
             }
             consultarDadosusuarios()

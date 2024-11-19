@@ -21,6 +21,7 @@ router.post('/CadastrarGrupos', estaAutenticado, new GruposControllers().cadastr
 
 //Roras de Login
 router.post('/LoginUsuarios', new LoginUsuariosControllers().loginUsuarios)
+router.get('/VerificaToken', estaAutenticado, new LoginUsuariosControllers().verificaToken)
 
 
 export default router
