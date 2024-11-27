@@ -11,11 +11,18 @@ export default function EditarUsuarios() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    const tokenT = localStorage.getItem('@token')
+    const token = JSON.parse(tokenT)
+
     useEffect(() => {
         try {
             async function consultarDados() {
                 const resposta = await apiLocal.post('/ConsultarUsuariosUnico', {
                     id
+                }, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
                 })
                 setNome(resposta.data.nome)
                 setEmail(resposta.data.email)
@@ -36,6 +43,10 @@ export default function EditarUsuarios() {
                 id,
                 nome,
                 email
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
             })
             toast.success('Cadastro Alterado com Sucesso', {
                 toastId: 'ToastId'

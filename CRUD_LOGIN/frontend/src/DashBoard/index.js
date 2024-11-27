@@ -28,7 +28,7 @@ export default function DashBoard() {
                 toastId: 'ToastId'
             })
         }
-    }, [dadosUsuarios])
+    }, [])
 
     async function apagaUsuarios(id) {
         try {
