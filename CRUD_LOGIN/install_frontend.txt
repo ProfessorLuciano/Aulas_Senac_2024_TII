@@ -1,0 +1,12 @@
+-- Criando projeto
+npx create create-react-app frontend
+-- CSS melhorado
+npm install sass
+-- biblioteca de icones
+npm install react-icons
+-- blibliotecas para login
+npm install axios
+-- biblioteca de alertas
+npm install react-toastify
+-- rotas
+npm install react-router-dom
