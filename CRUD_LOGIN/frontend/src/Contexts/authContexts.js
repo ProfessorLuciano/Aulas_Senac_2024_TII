@@ -28,6 +28,7 @@ export default function AuthProvider({ children }) {
             if (resposta.data.id) {
                 setTokenT(true)
                 localStorage.setItem('@id', JSON.stringify(resposta.data.id))
+                localStorage.setItem('@nome', JSON.stringify(resposta.data.nome))
             }
         } catch (err) {
 
