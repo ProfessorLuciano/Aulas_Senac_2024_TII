@@ -47,10 +47,11 @@ class LoginServices {
                 id: id
             },
             select: {
-                id: true
+                id: true,
+                nome: true
             }
         })
-        return resposta
+        console.log(resposta)
     }
 }
 

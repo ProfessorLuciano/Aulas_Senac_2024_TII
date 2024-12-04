@@ -6,7 +6,9 @@ import { toast } from 'react-toastify'
 
 export default function Inicio() {
 
-    const { loginEntrada } = useContext(AutenticadoContexto)
+    const { loginEntrada, verificarToken } = useContext(AutenticadoContexto)
+
+    verificarToken()
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')

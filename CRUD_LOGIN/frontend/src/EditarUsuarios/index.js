@@ -34,12 +34,13 @@ export default function EditarUsuarios() {
                 toastId: 'ToastId'
             })
         }
+        // eslint-disable-next-line
     }, [])
 
     async function enviarAlteracao(e) {
         try {
             e.preventDefault()
-            const resposta = await apiLocal.put('/AlterarDadosUsuarios', {
+            await apiLocal.put('/AlterarDadosUsuarios', {
                 id,
                 nome,
                 email

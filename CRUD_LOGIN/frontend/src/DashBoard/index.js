@@ -28,6 +28,7 @@ export default function DashBoard() {
                 toastId: 'ToastId'
             })
         }
+        // eslint-disable-next-line
     }, [])
 
     async function apagaUsuarios(id) {
