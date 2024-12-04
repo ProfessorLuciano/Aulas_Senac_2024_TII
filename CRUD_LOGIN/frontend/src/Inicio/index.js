@@ -7,7 +7,6 @@ import { toast } from 'react-toastify'
 export default function Inicio() {
 
     const { loginEntrada, verificarToken } = useContext(AutenticadoContexto)
-
     verificarToken()
 
     const [email, setEmail] = useState('')

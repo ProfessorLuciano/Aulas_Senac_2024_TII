@@ -52,7 +52,7 @@ export default function AuthProvider({ children }) {
     }
 
     return (
-        <AutenticadoContexto.Provider value={({ autenticado, loginEntrada, verificarToken })}>
+        <AutenticadoContexto.Provider value={({ autenticado, loginEntrada, verificarToken, token })}>
             {children}
         </AutenticadoContexto.Provider>
     )

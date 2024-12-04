@@ -7,13 +7,10 @@ import { Link } from 'react-router-dom'
 
 export default function DashBoard() {
 
-    const {verificarToken} = useContext(AutenticadoContexto)
+    const {verificarToken, token} = useContext(AutenticadoContexto)
     verificarToken()
     
     const [dadosUsuarios, setDadosUsuarios] = useState([''])
-
-    const iToken = localStorage.getItem('@token')
-    const token = JSON.parse(iToken)    
 
     useEffect(() => {
         try {

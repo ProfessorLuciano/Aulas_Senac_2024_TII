@@ -12,12 +12,9 @@ export default function EditarUsuarios() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const {verificarToken} = useContext(AutenticadoContexto)
+    const {verificarToken, token} = useContext(AutenticadoContexto)
     verificarToken()
-
-    const tokenT = localStorage.getItem('@token')
-    const token = JSON.parse(tokenT)
-
+  
     useEffect(() => {
         try {
             async function consultarDados() {
