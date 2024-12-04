@@ -11,35 +11,41 @@ export default function AuthProvider({ children }) {
 
     const autenticado = !!tokenT
 
-    async function verificarToken(){
+    async function verificarToken() {
         const iToken = localStorage.getItem('@token')
-        if(!iToken){
+        if (!iToken) {
             setTokenT(false)
             return
         }
         const tokenU = JSON.parse(iToken)
         setToken(tokenU)
-
-        const resposta = await apiLocal.get('/VerificaToken', {
-            headers: {
-                Authorization: `Bearer ${token}`
+        try {
+            const resposta = await apiLocal.get('/VerificaToken', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            if (resposta.data.id) {
+                setTokenT(true)
             }
-        })
+        } catch (err) {
+
+        }
     }
 
-    async function loginEntrada(email, password){
+    async function loginEntrada(email, password) {
         try {
             const resposta = await apiLocal.post('/LoginUsuarios', {
                 email,
                 password
             })
-           
+
             localStorage.setItem('@id', JSON.stringify(resposta.data.id))
             localStorage.setItem('@token', JSON.stringify(resposta.data.token))
             localStorage.setItem('@nome', JSON.stringify(resposta.data.nome))
             setTokenT(true)
         } catch (err) {
-            toast.error(err.response.data.error)            
+            toast.error(err.response.data.error)
         }
     }
 

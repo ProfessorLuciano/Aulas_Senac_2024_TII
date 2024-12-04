@@ -51,7 +51,7 @@ class LoginServices {
                 nome: true
             }
         })
-        console.log(resposta)
+        return resposta
     }
 }
 

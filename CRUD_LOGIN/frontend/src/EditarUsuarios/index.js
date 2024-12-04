@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { AutenticadoContexto } from '../Contexts/authContexts'
 import { useParams, useNavigate } from 'react-router-dom'
 import apiLocal from './../Api/apiLocal'
 import './estilo.editarUsuarios.scss'
@@ -10,6 +11,9 @@ export default function EditarUsuarios() {
     const [nome, setNome] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    const {verificarToken} = useContext(AutenticadoContexto)
+    verificarToken()
 
     const tokenT = localStorage.getItem('@token')
     const token = JSON.parse(tokenT)

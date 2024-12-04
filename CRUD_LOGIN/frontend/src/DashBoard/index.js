@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { AutenticadoContexto } from '../Contexts/authContexts'
 import './estilo.dashboard.scss'
 import { toast } from 'react-toastify'
 import apiLocal from './../Api/apiLocal'
 import { Link } from 'react-router-dom'
 
 export default function DashBoard() {
+
+    const {verificarToken} = useContext(AutenticadoContexto)
+    verificarToken()
     
     const [dadosUsuarios, setDadosUsuarios] = useState([''])
 
