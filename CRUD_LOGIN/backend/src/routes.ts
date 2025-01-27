@@ -14,7 +14,7 @@ router.post('/CadastrarUsuarios', new UsuariosControllers().cadastrarUsuarios)
 router.get('/ConsultarUsuarios', estaAutenticado, new UsuariosControllers().consultarUsuarios)
 router.post('/ConsultarUsuariosUnico', estaAutenticado, new UsuariosControllers().consultarUsuariosUnico)
 router.put('/AlterarDadosUsuarios', estaAutenticado, new UsuariosControllers().alterarDadosUsuarios)
-router.delete('/ApagarUsuarios/:id', estaAutenticado, new UsuariosControllers().apagarUsuarios)
+router.delete('/ApagarUsuario/:id', estaAutenticado, new UsuariosControllers().apagarUsuarios)
 
 //Rotas de Grupos
 router.post('/CadastrarGrupos', estaAutenticado, new GruposControllers().cadastrarGrupos)

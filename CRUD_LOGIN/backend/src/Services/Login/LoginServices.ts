@@ -9,7 +9,7 @@ interface Login {
 
 class LoginServices {
     async loginUsuarios({ email, password }: Login) {
-        const usuario = await prismaClient.cadastarUsuarios.findFirst({
+        const usuario = await prismaClient.cadastrarUsuarios.findFirst({
             where: {
                 email: email
             }
@@ -42,7 +42,7 @@ class LoginServices {
     }
 
     async verificaToken(id: string) {
-        const resposta = await prismaClient.cadastarUsuarios.findFirst({
+        const resposta = await prismaClient.cadastrarUsuarios.findFirst({
             where: {
                 id: id
             },

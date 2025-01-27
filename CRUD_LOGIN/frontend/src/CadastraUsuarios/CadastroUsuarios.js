@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './estilo.cadUsuarios.scss'
 import { toast } from 'react-toastify'
@@ -9,7 +9,7 @@ export default function CadastrarUsuarios() {
     const mudarTela = useNavigate()
     const [nome, setNome] = useState('')
     const [email, setEmail] = useState('')
-    const [password, setpassword] = useState('')
+    const [password, setpassword] = useState('')    
 
     async function cadastroUsuarios(e) {
         try {
@@ -58,6 +58,9 @@ export default function CadastrarUsuarios() {
                     value={password}
                     onChange={(e) => setpassword(e.target.value)}
                 />
+                <select>
+                    <option>Selecione o Grupo...</option>
+                </select>
                 <button type='submit'>Enviar</button>
             </form>
             <Link to='/' className='buttonVoltar' >Voltar Inicio</Link>

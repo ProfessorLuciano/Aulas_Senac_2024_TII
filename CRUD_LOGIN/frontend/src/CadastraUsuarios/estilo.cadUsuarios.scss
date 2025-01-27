@@ -29,6 +29,26 @@
             font-weight: bold;
         }
 
+        select{
+            width: 70%;
+            height: 3rem;
+            margin-top: 0.5rem;
+            border-radius: 0.8rem;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: bold;
+
+        }
+            option{
+                width: 70%;
+                height: 3rem;
+                margin-top: 0.5rem;
+                border-radius: 0.8rem;
+                text-align: center;
+                font-size: 1rem;
+                font-weight: bold;
+            }
+
         button {
             width: 30%;
             background-color: #080cf4;

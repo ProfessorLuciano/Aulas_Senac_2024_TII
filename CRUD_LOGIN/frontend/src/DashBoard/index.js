@@ -34,7 +34,7 @@ export default function DashBoard() {
 
     async function apagaUsuarios(id) {
         try {
-            await apiLocal.delete(`/ApagarUsuarios/${id}`)
+            await apiLocal.delete(`/ApagarUsuario/${id}`)
             toast.success('Registro Apagado com Sucesso', {
                 toastId: 'ToastId'
             })
@@ -43,7 +43,7 @@ export default function DashBoard() {
                 toastId: 'ToastId'
             })
         }
-    }
+    }   
 
     return (
         <>
