@@ -13,6 +13,11 @@ class GruposServices {
         })
         return ({ dados: 'Cadastro Efetuado Com Sucesso' })
     }
+
+    async listarGrupos(){
+        const resposta = await prismaClient.cadastrarGrupos.findMany()
+        return resposta
+    }
 }
 
 export { GruposServices }

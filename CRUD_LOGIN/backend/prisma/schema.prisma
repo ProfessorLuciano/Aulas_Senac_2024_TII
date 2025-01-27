@@ -20,7 +20,7 @@ model CadastrarUsuarios {
   data_alteracao DateTime @updatedAt 
 
   grupos CadastrarGrupos? @relation(fields: [idGrupos], references: [id])
-  idGrupos String?
+  idGrupos String
 
   @@map("cadastro_usuarios")
 }

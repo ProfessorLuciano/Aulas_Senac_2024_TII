@@ -34,7 +34,11 @@ export default function DashBoard() {
 
     async function apagaUsuarios(id) {
         try {
-            await apiLocal.delete(`/ApagarUsuario/${id}`)
+            await apiLocal.delete(`/ApagarUsuario/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
             toast.success('Registro Apagado com Sucesso', {
                 toastId: 'ToastId'
             })

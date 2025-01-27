@@ -9,7 +9,17 @@ export default function CadastrarUsuarios() {
     const mudarTela = useNavigate()
     const [nome, setNome] = useState('')
     const [email, setEmail] = useState('')
-    const [password, setpassword] = useState('')    
+    const [password, setpassword] = useState('')
+    const [grupos, setGrupos] = useState([''])
+    const [idGrupos, setIdGrupos] = useState('')
+
+    useEffect(() => {
+        async function carregarGrupos() {
+            const resposta = await apiLocal.get('/ListarGrupos')
+            setGrupos(resposta.data)
+        }
+        carregarGrupos()
+    }, [])
 
     async function cadastroUsuarios(e) {
         try {
@@ -21,7 +31,8 @@ export default function CadastrarUsuarios() {
             await apiLocal.post('/CadastrarUsuarios', {
                 nome,
                 email,
-                password
+                password,
+                idGrupos
             })
             toast.success('Cadastro Efetuado Com Sucesso', {
                 toastId: 'ToastId'
@@ -58,8 +69,16 @@ export default function CadastrarUsuarios() {
                     value={password}
                     onChange={(e) => setpassword(e.target.value)}
                 />
-                <select>
+                <select
+                    value={idGrupos}
+                    onChange={(e) => setIdGrupos(e.target.value)}
+                >
                     <option>Selecione o Grupo...</option>
+                    {grupos.map((item) => {
+                        return (
+                            <option value={item.id}>{item.nome}</option>
+                        )
+                    })}
                 </select>
                 <button type='submit'>Enviar</button>
             </form>
