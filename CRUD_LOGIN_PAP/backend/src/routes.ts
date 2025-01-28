@@ -18,6 +18,7 @@ router.delete('/ApagarUsuario/:id', estaAutenticado, new UsuariosControllers().a
 
 //Rotas de Grupos
 router.post('/CadastrarGrupos', estaAutenticado, new GruposControllers().cadastrarGrupos)
+router.get('/ListarGrupos', new GruposControllers().listarGrupos)
 
 //Roras de Login
 router.post('/LoginUsuarios', new LoginUsuariosControllers().loginUsuarios)

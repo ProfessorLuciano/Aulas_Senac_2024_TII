@@ -7,9 +7,9 @@ import { Link } from 'react-router-dom'
 
 export default function DashBoard() {
 
-    const {verificarToken, token} = useContext(AutenticadoContexto)
+    const { verificarToken, token } = useContext(AutenticadoContexto)
     verificarToken()
-    
+
     const [dadosUsuarios, setDadosUsuarios] = useState([''])
 
     useEffect(() => {
@@ -17,7 +17,7 @@ export default function DashBoard() {
             async function consultarDadosusuarios() {
                 const resposta = await apiLocal.get('/ConsultarUsuarios', {
                     headers: {
-                       // Authorization: 'Bearer ' + `${token}`
+                        // Authorization: 'Bearer ' + `${token}`
                         Authorization: `Bearer ${token}`
                     }
                 })
@@ -34,16 +34,21 @@ export default function DashBoard() {
 
     async function apagaUsuarios(id) {
         try {
-            await apiLocal.delete(`/ApagarUsuario/${id}`)
+            await apiLocal.delete(`/ApagarUsuario/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
             toast.success('Registro Apagado com Sucesso', {
                 toastId: 'ToastId'
             })
         } catch (err) {
-            toast.error('Erro ao Comunicar com BackEnd', {
+            console.log(err)           
+            toast.error(err.response.data.error, {
                 toastId: 'ToastId'
             })
         }
-    }   
+    }
 
     return (
         <>

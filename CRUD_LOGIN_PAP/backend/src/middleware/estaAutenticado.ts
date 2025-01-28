@@ -12,7 +12,8 @@ export function estaAutenticado(
 ) {
     const autToken = req.headers.authorization
     if (!autToken) {
-        return res.json({ dados: 'Token Inválido' })
+        //return res.json({ dados: 'Token Não Existe' })
+        throw new Error('Token Inválido')
     }
 
     const [, token] = autToken.split(' ')
@@ -24,6 +25,7 @@ export function estaAutenticado(
         req.usuarioId = sub
         return next()
     } catch (err) {
-        return res.json({ dados: 'Token Inválido' })
+        //return res.json({ dados: 'Token Inválido' })
+        throw new Error('Token Inválido')
     }
 }

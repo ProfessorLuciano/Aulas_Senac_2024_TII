@@ -5,6 +5,7 @@ interface cadUsuarios {
     nome: string,
     email: string,
     password: string
+    idGrupos: string
 }
 
 interface AlterarUsuarios {
@@ -14,14 +15,14 @@ interface AlterarUsuarios {
 }
 
 class UsuariosServices {
-    async cadastrarUsuarios({ nome, email, password }: cadUsuarios) {
-
+    async cadastrarUsuarios({ nome, email, password, idGrupos }: cadUsuarios) {
         const senhaCrypt = await hash(password, 8)
         await prismaClient.cadastrarUsuarios.create({
             data: {
                 nome: nome,
                 email: email,
-                senha: senhaCrypt
+                senha: senhaCrypt,
+                idGrupos: idGrupos
             }
         })
         return ({ dados: 'Cadastro Efetuado Com Sucesso' })
