@@ -8,9 +8,22 @@
     h1{
         width: 100%;
         background-color: #ecf409;
-        color: #1b0bf1;
+        color: #1100ff;
         text-align: center;
         font-weight: bold;
+    }
+
+    .linkProdutos{       
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #1100ff;
+            color: #FFFFFF;
+            font-size: 3rem;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            width: 30%;
+            border-radius: 0.8rem;
     }
 
     .usuariosTabela {
