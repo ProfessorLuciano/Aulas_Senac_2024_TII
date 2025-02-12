@@ -61,6 +61,7 @@ export default function DashBoard() {
                 <div className='conteinerDashboardGeral'>
                     <h1>Pagina de DashBoard</h1>
                     <Link to={'/Produtos'} className='linkProdutos'>Produtos</Link>
+                    <Link to={'/VisualizaProdutos'} className='linkProdutos'>Visualizar Produtos</Link>
                     <table className='usuariosTabela'>
                         <thead>
                             <tr key="">
