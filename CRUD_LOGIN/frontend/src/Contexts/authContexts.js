@@ -41,13 +41,13 @@ export default function AuthProvider({ children }) {
                 email,
                 password
             })
-
             localStorage.setItem('@id', JSON.stringify(resposta.data.id))
             localStorage.setItem('@token', JSON.stringify(resposta.data.token))
             localStorage.setItem('@nome', JSON.stringify(resposta.data.nome))
             setTokenT(true)
         } catch (err) {
-            toast.error(err.response.data.error)
+            toast.error('Erro de Comunicação')
+            //console.log(err)
         }
     }
 

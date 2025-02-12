@@ -15,15 +15,15 @@ app.use(
 )
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-    if(err instanceof Error){
+    if (err instanceof Error) {
         return res.status(400).json({
             error: err.message
         })
-        return res.status(500).json({
-            status: 'Erro',
-            message: 'Erro Interno no Servidor'
-        })
     }
+    return res.status(500).json({
+        status: 'Erro',
+        message: 'Erro Interno no Servidor'
+    })
 })
 
-app.listen(3333, () =>  console.log('Servidor On Line na Porta 3333'))
+app.listen(3333, () => console.log('Servidor On Line na Porta 3333'))

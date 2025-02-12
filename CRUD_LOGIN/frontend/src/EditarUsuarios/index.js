@@ -11,6 +11,7 @@ export default function EditarUsuarios() {
     const [nome, setNome] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    console.log(id)
 
     const {verificarToken, token} = useContext(AutenticadoContexto)
     verificarToken()
