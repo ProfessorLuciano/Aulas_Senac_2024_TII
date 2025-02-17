@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from 'react'
 import { AutenticadoContexto } from '../Contexts/authContexts'
 import apiLocal from './../Api/apiLocal'
+import './estilo.visualizaProdutos.scss'
 
 export default function VisualizaProdutos() {
 
@@ -22,15 +23,17 @@ export default function VisualizaProdutos() {
         // eslint-disable-next-line
     }, [])
     return (
-        <div>
+        <div className='conteinerGeralVisializaProdutos'>
             <h1>Visualizar Produtos</h1>
             {dados.map((item) => {
                 return (
-                    <>
-                        <span>{item.nome}</span>
-                        <span>{item.preco}</span>
-                        <span><img src={`http://localhost:3333/files/9c5c4b5fd1e06ffaf38021b9129d441e-coca.png`} alt='' />  </span>
-                    </>
+                    <div className='conteinerImagensProdutos'>
+                        <div className='cardProdutos'>
+                            <img src={`http://localhost:3333/files/${item.banner}`} alt='' />
+                            <p>{item.nome}</p>
+                            <p>R$ {item.preco}</p>
+                        </div>
+                    </div>
                 )
             })}
         </div>
