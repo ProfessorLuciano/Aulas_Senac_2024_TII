@@ -29,7 +29,8 @@ router.post('/LoginUsuarios', new LoginUsuariosControllers().loginUsuarios)
 router.get('/VerificaToken', estaAutenticado, new LoginUsuariosControllers().verificaToken)
 
 //Rotas de Produtos
-router.post('/CadastrarProdutos', upload.single('file'), new ProdutosControllers().cadastrarProdutos)
+router.post('/CadastrarProdutos', estaAutenticado, upload.single('file'), new ProdutosControllers().cadastrarProdutos)
+router.get('/ConsultarProdutos', estaAutenticado, new ProdutosControllers().consultarProdutos)
 
 
 

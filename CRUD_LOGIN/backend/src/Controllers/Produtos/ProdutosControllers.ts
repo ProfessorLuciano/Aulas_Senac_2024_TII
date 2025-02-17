@@ -18,6 +18,12 @@ class ProdutosControllers {
             return res.json(resposta)            
         }
     }
+    
+    async consultarProdutos(req: Request, res: Response){
+        const enviaDadosServices = new ProdutosServices()
+        const resposta = await enviaDadosServices.consultarProdutos()
+        return res.json(resposta)
+    }
 }
 
 export { ProdutosControllers }

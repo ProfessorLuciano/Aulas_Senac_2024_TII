@@ -18,6 +18,11 @@ class ProdutosServices {
         return ({dados: 'Produto Cadastrado com Sucesso'})
     }
 
+    async consultarProdutos(){
+        const resposta = await prismaClient.produtos.findMany()
+        return resposta        
+    }
+
 }
 
 export { ProdutosServices }
