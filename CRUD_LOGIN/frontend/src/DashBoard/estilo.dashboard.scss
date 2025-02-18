@@ -4,6 +4,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
 
     h1 {
         font-size: 4rem;
@@ -14,17 +15,25 @@
         font-weight: bold;
     }
 
-    .linkProdutos {
-        margin-top: 1rem;
-        padding: 1rem;
-        background-color: #1100ff;
-        color: #FFFFFF;
-        font-size: 3rem;
-        text-align: center;
-        text-decoration: none;
-        font-weight: bold;
-        width: 30%;
-        border-radius: 0.8rem;
+    .botoesProdutos{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        
+        
+        .linkProdutos {
+            margin: 1rem;
+            padding: 1rem;
+            background-color: #1100ff;
+            color: #FFFFFF;
+            font-size: 3rem;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            width: 30%;
+            border-radius: 0.8rem;
+        }
+        
     }
 
     .button1 {
@@ -58,12 +67,12 @@
 
         td {
             padding: 1rem;
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: bold;
             text-align: center;
             font-weight: bold;
-            background-color: #f77808;
-            color: #FFFFFF;
+            background-color: #d3f708;
+            color: #000000;
             border: 2px solid #000000;
         }
 

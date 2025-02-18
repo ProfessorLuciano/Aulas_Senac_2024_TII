@@ -75,8 +75,10 @@ export default function DashBoard() {
                 :
                 <div className='conteinerDashboardGeral'>
                     <h1>Pagina de DashBoard</h1>
-                    <Link to={'/Produtos'} className='linkProdutos'>Produtos</Link>
-                    <Link to={'/VisualizaProdutos'} className='linkProdutos'>Visualizar Produtos</Link>
+                    <div className='botoesProdutos'>
+                        <Link to={'/Produtos'} className='linkProdutos'>Produtos</Link>
+                        <Link to={'/VisualizaProdutos'} className='linkProdutos'>Visualizar Produtos</Link>
+                    </div>
                     <button className='button1' onClick={sairSistema}>Sair</button>
                     {load === false ?
                         <CirclesWithBar
@@ -108,12 +110,16 @@ export default function DashBoard() {
                                             <>
                                                 <tr key={item.id}>
                                                     <td>{item.id}</td>
-                                                    <td>{item.nome}</td>
+                                                    {/*<td>{item.nome[0].toUpperCase() + item.nome.slice(1)}</td>*/}
+                                                    <td>{item.nome.toUpperCase()}</td>
                                                     <td>{item.email}</td>
                                                     {!item.grupos ?
                                                         <td>Vazio</td>
                                                         :
-                                                        <td>{item.grupos.nome}</td>
+                                                        <>
+                                                            {/*<td>{item.grupos.nome[0].toUpperCase() + item.grupos.nome.slice(1)}</td>*/}
+                                                            <td>{item.grupos.nome.toUpperCase()}</td>
+                                                        </>
                                                     }
                                                     <td><Link to={`/EditarUsuarios/${item.id}`} className='button3'>Editar</Link></td>
                                                     <td><button className='button2' type='submit' onClick={() => apagaUsuarios(item.id)}>Apagar</button></td>
