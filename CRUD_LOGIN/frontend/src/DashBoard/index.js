@@ -3,25 +3,35 @@ import { AutenticadoContexto } from '../Contexts/authContexts'
 import './estilo.dashboard.scss'
 import { toast } from 'react-toastify'
 import apiLocal from './../Api/apiLocal'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+
+import { CirclesWithBar } from 'react-loader-spinner'
 
 export default function DashBoard() {
 
-    const {verificarToken, token} = useContext(AutenticadoContexto)
+    const { verificarToken, token } = useContext(AutenticadoContexto)
     verificarToken()
-    
+
+    const navigator = useNavigate()
     const [dadosUsuarios, setDadosUsuarios] = useState([''])
+    const [load, setLoad] = useState(false)
 
     useEffect(() => {
+        setLoad(false)
         try {
             async function consultarDadosusuarios() {
                 const resposta = await apiLocal.get('/ConsultarUsuarios', {
                     headers: {
-                       // Authorization: 'Bearer ' + `${token}`
+                        // Authorization: 'Bearer ' + `${token}`
                         Authorization: `Bearer ${token}`
                     }
                 })
-                setDadosUsuarios(resposta.data)
+                if (resposta.data.dados === 'Token Inválido') {
+                    setLoad(false)
+                } else {
+                    setDadosUsuarios(resposta.data)
+                    setLoad(true)
+                }
             }
             consultarDadosusuarios()
         } catch (err) {
@@ -30,7 +40,7 @@ export default function DashBoard() {
             })
         }
         // eslint-disable-next-line
-    }, [])
+    }, [token])
 
     async function apagaUsuarios(id) {
         try {
@@ -47,7 +57,12 @@ export default function DashBoard() {
                 toastId: 'ToastId'
             })
         }
-    }   
+    }
+
+    function sairSistema() {
+        localStorage.clear()
+        navigator('/')
+    }
 
     return (
         <>
@@ -62,36 +77,54 @@ export default function DashBoard() {
                     <h1>Pagina de DashBoard</h1>
                     <Link to={'/Produtos'} className='linkProdutos'>Produtos</Link>
                     <Link to={'/VisualizaProdutos'} className='linkProdutos'>Visualizar Produtos</Link>
-                    <table className='usuariosTabela'>
-                        <thead>
-                            <tr key="">
-                                <th>ID</th>
-                                <th>Nome</th>
-                                <th>Email</th>
-                                <th>Grupo</th>
-                                <th>Edita</th>
-                                <th>Apaga</th>
-                            </tr>
-                            {dadosUsuarios.map((item) => {
-                                return (
-                                    <>
-                                        <tr key="">
-                                            <td>{item.id}</td>
-                                            <td>{item.nome}</td>
-                                            <td>{item.email}</td>
-                                            {!item.grupos ?
-                                                <td>Vazio</td>
-                                                :
-                                                <td>{item.grupos.nome}</td>
-                                            }
-                                            <td><Link to={`/EditarUsuarios/${item.id}`}>Editar</Link></td>
-                                            <td><button type='submit' onClick={() => apagaUsuarios(item.id)}>Apagar</button></td>
-                                        </tr>
-                                    </>
-                                )
-                            })}
-                        </thead>
-                    </table>
+                    <button className='button1' onClick={sairSistema}>Sair</button>
+                    {load === false ?
+                        <CirclesWithBar
+                            height="100"
+                            width="100"
+                            color="#4fa94d"
+                            outerCircleColor="#ffffff"
+                            innerCircleColor="#000000"
+                            barColor="#0000ff"
+                            ariaLabel="circles-with-bar-loading"
+                            wrapperStyle={{}}
+                            wrapperClass=""
+                            visible={true}
+                        />
+                        :
+                        <table className='usuariosTabela'>
+                            <thead>
+                                <tr key="">
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>Email</th>
+                                    <th>Grupo</th>
+                                    <th>Edita</th>
+                                    <th>Apaga</th>
+                                </tr>
+                                <>
+                                    {dadosUsuarios.map((item) => {
+                                        return (
+                                            <>
+                                                <tr key={item.id}>
+                                                    <td>{item.id}</td>
+                                                    <td>{item.nome}</td>
+                                                    <td>{item.email}</td>
+                                                    {!item.grupos ?
+                                                        <td>Vazio</td>
+                                                        :
+                                                        <td>{item.grupos.nome}</td>
+                                                    }
+                                                    <td><Link to={`/EditarUsuarios/${item.id}`} className='button3'>Editar</Link></td>
+                                                    <td><button className='button2' type='submit' onClick={() => apagaUsuarios(item.id)}>Apagar</button></td>
+                                                </tr>
+                                            </>
+                                        )
+                                    })}
+                                </>
+                            </thead>
+                        </table>
+                    }
                 </div>
             }
         </>
