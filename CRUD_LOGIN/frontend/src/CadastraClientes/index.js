@@ -56,7 +56,7 @@ export default function CadastrarClientes() {
             toast.success('Cadastro Efetuado Com Sucesso', {
                 toastId: 'ToastId'
             })
-            //mudarTela('/')
+            mudarTela('/LoginClientes')
 
         } catch (err) {
             toast.error(err.response.data.error, {
