@@ -6,20 +6,20 @@ import { toast } from 'react-toastify'
 
 export default function LoginClientes() {
 
-    const { loginEntrada, verificarToken } = useContext(AutenticadoContexto)
+    const { loginClientes, verificarToken } = useContext(AutenticadoContexto)
     verificarToken()
 
-    const [email, setEmail] = useState('')
+    const [cpf, setCpf] = useState('')
     const [password, setPassword] = useState('')
 
     async function dadosLogin(e) {
         e.preventDefault()
-        if (!email || !password) {
+        if (!cpf || !password) {
             toast.warning('Preencha todos os campos')
             return
         }
         try {
-            await loginEntrada(email, password)
+            await loginClientes(cpf, password)
         } catch (err) {
             
         }
@@ -31,9 +31,9 @@ export default function LoginClientes() {
             <form onSubmit={dadosLogin}>
                 <input
                     type="text"
-                    placeholder='Digite o E-mail'
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder='Digite o CPF'
+                    value={cpf}
+                    onChange={(e) => setCpf(e.target.value)}
                 />
 
                 <input

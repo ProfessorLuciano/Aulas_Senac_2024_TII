@@ -53,8 +53,26 @@ export default function AuthProvider({ children }) {
         }
     }
 
+    async function loginClientes(cpf, password) {
+        try {
+            const resposta = await apiLocal.post('/LoginClientes', {
+                cpf,
+                password
+            })
+            localStorage.setItem('@id', JSON.stringify(resposta.data.id))
+            localStorage.setItem('@token', JSON.stringify(resposta.data.token))
+            localStorage.setItem('@nome', JSON.stringify(resposta.data.nome))
+            localStorage.setItem('@funcionario', JSON.stringify(resposta.data.funcionario))
+            localStorage.setItem('@cliente', JSON.stringify(resposta.data.cliente))
+            setTokenT(true)
+        } catch (err) {
+            toast.error('Erro de Comunicação')
+            //console.log(err)
+        }
+    }
+
     return (
-        <AutenticadoContexto.Provider value={({ autenticado, loginEntrada, verificarToken, token })}>
+        <AutenticadoContexto.Provider value={({ autenticado, loginEntrada, loginClientes, verificarToken, token })}>
             {children}
         </AutenticadoContexto.Provider>
     )
