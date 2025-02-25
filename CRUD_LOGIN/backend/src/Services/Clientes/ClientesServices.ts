@@ -1,4 +1,5 @@
 import prismaClient from '../../Prisma'
+import { hash } from 'bcryptjs'
 
 interface CadClientes {
     nome: string
@@ -25,13 +26,13 @@ class ClientesServices {
         if (consultaCpf) {
             throw new Error('Cliente já está cadastrado ')
         }
-
+        const senhaCrypt = await hash(password, 8)
         await prismaClient.clientes.create({
             data: {
                 nome: nome,
                 cpf: cpf,
                 email: email,
-                password: password,
+                password: senhaCrypt,
                 cep: cep,
                 rua: rua,
                 numero: numero,
@@ -43,7 +44,7 @@ class ClientesServices {
                 cliente: true
             }
         })
-        return ({dados: 'Cadastro efetuado com sucesso'})
+        return ({ dados: 'Cadastro efetuado com sucesso' })
     }
 }
 
