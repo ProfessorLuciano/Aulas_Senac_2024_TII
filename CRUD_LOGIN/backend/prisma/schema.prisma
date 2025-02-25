@@ -9,10 +9,12 @@ datasource db {
 }
 
 model CadastrarUsuarios {
-  id    String @id @default(uuid())
-  nome  String
-  email String
-  senha String
+  id          String  @id @default(uuid())
+  nome        String
+  email       String
+  senha       String
+  funcionario Boolean @default(true)
+  cliente     Boolean @default(false)
 
   //data_criacao   DateTime @default(now()) @db.Timestamptz()
   data_criacao   DateTime @default(now())
@@ -49,4 +51,26 @@ model Produtos {
   data_alteracao DateTime @updatedAt
 
   @@map("produtos")
+}
+
+model Clientes {
+  id          String  @id @default(uuid())
+  nome        String
+  cpf         String
+  email       String
+  password    String
+  cep         String
+  rua         String
+  numero      String
+  complemento String?
+  bairro      String
+  cidade      String
+  estado      String
+  funcionario Boolean @default(true)
+  cliente     Boolean @default(false)
+
+  data_criacao   DateTime @default(now())
+  data_alteracao DateTime @updatedAt
+
+  @@map("clientes")
 }

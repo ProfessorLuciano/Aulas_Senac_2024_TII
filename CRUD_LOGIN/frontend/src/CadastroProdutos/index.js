@@ -2,10 +2,10 @@ import { useState, useContext } from 'react'
 import { AutenticadoContexto } from '../Contexts/authContexts'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import apiLocal from './../Api/apiLocal'
-import './estilo.produtos.scss'
+import apiLocal from '../Api/apiLocal'
+import './estilo.cadastroProdutos.scss'
 
-export default function Produtos() {
+export default function CadastroProdutos() {
 
     const { verificarToken, token } = useContext(AutenticadoContexto)
     verificarToken()
@@ -52,7 +52,7 @@ export default function Produtos() {
     }
 
     return (
-        <div className='conteinerGeralProdutos'>
+        <div className='conteinerGeralCadastroProdutos'>
             <h1>Produtos</h1>
             <form onSubmit={cadastrarProduto}>                   
                     <input

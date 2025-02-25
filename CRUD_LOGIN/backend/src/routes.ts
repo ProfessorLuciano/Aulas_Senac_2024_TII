@@ -7,6 +7,7 @@ import { UsuariosControllers } from './Controllers/Usuarios/UsuariosControllers'
 import { GruposControllers } from './Controllers/Grupos/GruposControllers'
 import { LoginUsuariosControllers } from './Controllers/Login/LoginUsuariosControllers'
 import { ProdutosControllers } from './Controllers/Produtos/ProdutosControllers'
+import { ClientesController } from './Controllers/Clientes/ClientesControllers'
 
 import { estaAutenticado } from './middleware/estaAutenticado'
 const router = Router()
@@ -31,6 +32,9 @@ router.get('/VerificaToken', estaAutenticado, new LoginUsuariosControllers().ver
 //Rotas de Produtos
 router.post('/CadastrarProdutos', estaAutenticado, upload.single('file'), new ProdutosControllers().cadastrarProdutos)
 router.get('/ConsultarProdutos', estaAutenticado, new ProdutosControllers().consultarProdutos)
+
+//Rotas de Clientes
+router.post('/CadastrarClientes', new ClientesController().cadastrarClientes)
 
 
 
