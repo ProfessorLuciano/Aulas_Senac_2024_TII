@@ -9,7 +9,7 @@ export default function DashBoard() {
 
     const { verificarToken } = useContext(AutenticadoContexto)
     verificarToken()
-    
+
     return (
         <>
             <div className='conteinerDashboardGeral'>

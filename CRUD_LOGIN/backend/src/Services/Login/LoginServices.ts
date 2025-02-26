@@ -38,7 +38,6 @@ class LoginServices {
             nome: usuario.nome,
             email: usuario.email,
             funcionario: usuario.funcionario,
-            cliente: usuario.cliente,
             token: token
         }
     }

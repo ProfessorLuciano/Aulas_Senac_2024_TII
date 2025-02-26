@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 
 export default function LoginFuncionarios() {
 
-    const { loginEntrada, verificarToken } = useContext(AutenticadoContexto)
+    const { loginUsuarios, verificarToken } = useContext(AutenticadoContexto)
     verificarToken()
 
     const [email, setEmail] = useState('')
@@ -19,7 +19,7 @@ export default function LoginFuncionarios() {
             return
         }
         try {
-            await loginEntrada(email, password)
+            await loginUsuarios(email, password)
         } catch (err) {
             
         }

@@ -37,6 +37,8 @@ export default function Cabecalho() {
                         <>
                             <Link to=''>Início</Link>
                             <Link to=''>Quem Somos</Link>
+                            <Link to='/LoginClientes'>Área do Cliente</Link>
+                            <Link to='/LoginFuncionarios'>Área do Colaborador</Link>
                         </>
                     )}
                     {(autenticado === true && funcionario === true) && (
@@ -50,13 +52,7 @@ export default function Cabecalho() {
                             <Link to='/VisualizaProdutos'>Visualiza Produtos</Link>
                             <Link to=''>Realizar Pedidos</Link>
                         </>
-                    )}
-                    {autenticado === false && (
-                        <>
-                            <Link to='/LoginClientes'>Área do Cliente</Link>
-                            <Link to='/LoginFuncionarios'>Área do Colaborador</Link>
-                        </>
-                    )}
+                    )}                    
                     {autenticado === true && (
                         <button onClick={sairSistema}>Sair</button>
                     )}

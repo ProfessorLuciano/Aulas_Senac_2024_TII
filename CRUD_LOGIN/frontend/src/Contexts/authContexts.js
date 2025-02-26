@@ -35,7 +35,7 @@ export default function AuthProvider({ children }) {
         }
     }
 
-    async function loginEntrada(email, password) {
+    async function loginUsuarios(email, password) {
         try {
             const resposta = await apiLocal.post('/LoginUsuarios', {
                 email,
@@ -45,7 +45,6 @@ export default function AuthProvider({ children }) {
             localStorage.setItem('@token', JSON.stringify(resposta.data.token))
             localStorage.setItem('@nome', JSON.stringify(resposta.data.nome))
             localStorage.setItem('@funcionario', JSON.stringify(resposta.data.funcionario))
-            localStorage.setItem('@cliente', JSON.stringify(resposta.data.cliente))
             setTokenT(true)
         } catch (err) {
             toast.error('Erro de Comunicação')
@@ -62,7 +61,6 @@ export default function AuthProvider({ children }) {
             localStorage.setItem('@id', JSON.stringify(resposta.data.id))
             localStorage.setItem('@token', JSON.stringify(resposta.data.token))
             localStorage.setItem('@nome', JSON.stringify(resposta.data.nome))
-            localStorage.setItem('@funcionario', JSON.stringify(resposta.data.funcionario))
             localStorage.setItem('@cliente', JSON.stringify(resposta.data.cliente))
             setTokenT(true)
         } catch (err) {
@@ -72,7 +70,7 @@ export default function AuthProvider({ children }) {
     }
 
     return (
-        <AutenticadoContexto.Provider value={({ autenticado, loginEntrada, loginClientes, verificarToken, token })}>
+        <AutenticadoContexto.Provider value={({ autenticado, loginUsuarios, loginClientes, verificarToken, token })}>
             {children}
         </AutenticadoContexto.Provider>
     )

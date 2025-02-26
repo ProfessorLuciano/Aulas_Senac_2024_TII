@@ -8,6 +8,7 @@ import { GruposControllers } from './Controllers/Grupos/GruposControllers'
 import { LoginUsuariosControllers } from './Controllers/Login/LoginUsuariosControllers'
 import { ProdutosControllers } from './Controllers/Produtos/ProdutosControllers'
 import { ClientesController } from './Controllers/Clientes/ClientesControllers'
+import { LoginClientesControllers } from './Controllers/Login/LoginClientesControllers'
 
 import { estaAutenticado } from './middleware/estaAutenticado'
 const router = Router()
@@ -28,6 +29,7 @@ router.get('/ListarGrupos', new GruposControllers().listarGrupos)
 //Rotas de Login
 router.post('/LoginUsuarios', new LoginUsuariosControllers().loginUsuarios)
 router.get('/VerificaToken', estaAutenticado, new LoginUsuariosControllers().verificaToken)
+router.post('/LoginClientes', new LoginClientesControllers().loginClientes)
 
 //Rotas de Produtos
 router.post('/CadastrarProdutos', estaAutenticado, upload.single('file'), new ProdutosControllers().cadastrarProdutos)
