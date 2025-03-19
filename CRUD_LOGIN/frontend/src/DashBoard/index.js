@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { AutenticadoContexto } from '../Contexts/authContexts'
 import './estilo.dashboard.scss'
 //import { toast } from 'react-toastify'
@@ -7,14 +7,31 @@ import './estilo.dashboard.scss'
 
 export default function DashBoard() {
 
-    const { verificarToken } = useContext(AutenticadoContexto)
-    verificarToken()
+    const { verificarTokenCliente, verificarToken } = useContext(AutenticadoContexto)
+
+    const [tipo, setTipo] = useState('')
+    useEffect(() => {
+        const tipoU = localStorage.getItem('@funcionario')
+        setTipo(JSON.parse(tipoU))
+    }, [tipo])
+
+    if (tipo === true) {
+        verificarToken()
+    } else {
+        verificarTokenCliente()
+    }
 
     return (
         <>
-            <div className='conteinerDashboardGeral'>
-                <h1>Pagina de DashBoard</h1>             
-            </div>           
+            {tipo === true ?
+                <div className='conteinerDashboardGeral'>
+                    <h1>DashBoard Funcionarios</h1>
+                </div>
+                :
+                <div className='conteinerDashboardGeral'>
+                    <h1>DashBoard Clientes</h1>
+                </div>
+            }
         </>
     )
 }

@@ -14,8 +14,11 @@ export default function CadastroProdutos() {
 
     const [nome, setNome] = useState('')
     const [preco, setPreco] = useState('')
+    const [altura, setAltura] = useState('')
+    const [largura, setLargura] = useState('')
+    const [comprimento, setComprimento] = useState('')
+    const [peso, setPeso] = useState('')
     const [imagem, setImagem] = useState(null)
-    console.log(nome, preco)
 
     function pegarImagem(e) {
         if (!e.target.files) {
@@ -33,6 +36,10 @@ export default function CadastroProdutos() {
             const data = new FormData()
             data.append('nome', nome)
             data.append('preco', preco)
+            data.append('altura', altura)
+            data.append('largura', largura)
+            data.append('comprimento', comprimento)
+            data.append('peso', peso)
             data.append('file', imagem)
             const resposta = await apiLocal.post('/CadastrarProdutos', data, {
                 headers: {
@@ -57,13 +64,39 @@ export default function CadastroProdutos() {
             <form onSubmit={cadastrarProduto}>                   
                     <input
                         type="text"
+                        placeholder='Digite o nome do produto'
                         value={nome}
                         onChange={(e) => setNome(e.target.value)}
-                    />                  
+                        />                  
                     <input
                         type="text"
+                        placeholder='Digite o preço do produto'
                         value={preco}
                         onChange={(e) => setPreco(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        placeholder='Digite a altura do produto'
+                        value={altura}
+                        onChange={(e) => setAltura(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        placeholder='Digite a largura do produto'
+                        value={largura}
+                        onChange={(e) => setLargura(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        placeholder='Digite o comprimento do produto'
+                        value={comprimento}
+                        onChange={(e) => setComprimento(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        placeholder='Digite o peso do produto'
+                        value={peso}
+                        onChange={(e) => setPeso(e.target.value)}
                     />
                     
                     <input

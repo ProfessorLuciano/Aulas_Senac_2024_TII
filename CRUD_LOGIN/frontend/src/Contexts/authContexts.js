@@ -35,8 +35,33 @@ export default function AuthProvider({ children }) {
         }
     }
 
+    async function verificarTokenCliente() {
+        const iToken = localStorage.getItem('@token')
+        if (!iToken) {
+            setTokenT(false)
+            return
+        }
+        const tokenU = JSON.parse(iToken)
+        setToken(tokenU)
+        try {
+            const resposta = await apiLocal.get('/VerificaTokenClientes', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            if (resposta.data.id) {
+                setTokenT(true)
+                localStorage.setItem('@id', JSON.stringify(resposta.data.id))
+                localStorage.setItem('@nome', JSON.stringify(resposta.data.nome))
+            }
+        } catch (err) {
+
+        }
+    }
+
     async function loginUsuarios(email, password) {
         try {
+            localStorage.clear()
             const resposta = await apiLocal.post('/LoginUsuarios', {
                 email,
                 password
@@ -47,13 +72,15 @@ export default function AuthProvider({ children }) {
             localStorage.setItem('@funcionario', JSON.stringify(resposta.data.funcionario))
             setTokenT(true)
         } catch (err) {
-            toast.error('Erro de Comunicação')
-            //console.log(err)
+            toast.error(err.response.data.error, {
+                toastId: 'ToastId'
+            })
         }
     }
 
     async function loginClientes(cpf, password) {
         try {
+            localStorage.clear()
             const resposta = await apiLocal.post('/LoginClientes', {
                 cpf,
                 password
@@ -64,13 +91,14 @@ export default function AuthProvider({ children }) {
             localStorage.setItem('@cliente', JSON.stringify(resposta.data.cliente))
             setTokenT(true)
         } catch (err) {
-            toast.error('Erro de Comunicação')
-            //console.log(err)
+            toast.error(err.response.data.error, {
+                toastId: 'ToastId'
+            })
         }
     }
 
     return (
-        <AutenticadoContexto.Provider value={({ autenticado, loginUsuarios, loginClientes, verificarToken, token })}>
+        <AutenticadoContexto.Provider value={({ autenticado, loginUsuarios, loginClientes, verificarToken, verificarTokenCliente, token })}>
             {children}
         </AutenticadoContexto.Provider>
     )

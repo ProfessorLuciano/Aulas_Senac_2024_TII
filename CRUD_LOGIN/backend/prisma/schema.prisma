@@ -42,10 +42,16 @@ model CadastrarGrupos {
 }
 
 model Produtos {
-  id     String @id @default(uuid())
-  nome   String
-  preco  String
-  banner String
+  id          String  @id @default(uuid())
+  nome        String
+  preco       String
+  altura      String?
+  largura     String?
+  comprimento String?
+  peso        String?
+  banner      String
+
+  itens ItemsCarrinho[]
 
   data_criacao   DateTime @default(now())
   data_alteracao DateTime @updatedAt
@@ -69,8 +75,46 @@ model Clientes {
   funcionario Boolean @default(true)
   cliente     Boolean @default(false)
 
+  carrinho Carrinho[]
+
   data_criacao   DateTime @default(now())
   data_alteracao DateTime @updatedAt
 
   @@map("clientes")
+}
+
+model Carrinho {
+  id          String   @id @default(uuid())
+  n_pedido    Int      @unique @default(autoincrement())
+  valor_total Decimal? @db.Decimal(9, 2)
+  status      String   @default("Aguardando")
+  draft       Boolean  @default(true)
+  entrega     Boolean  @default(false)
+  aceito      Boolean  @default(false)
+
+  itens ItemsCarrinho[]
+  cliente Clientes @relation(fields: [id_cliente], references: [id])
+  id_cliente String
+  
+
+  data_criacao   DateTime @default(now())
+  data_alteracao DateTime @updatedAt
+
+  @@map("carrinho")
+}
+
+model ItemsCarrinho {
+  id         String  @id @default(uuid())
+  quantidade Int @default(1)
+  valor      Decimal @db.Decimal(9, 2)
+
+  carrinho Carrinho @relation(fields: [id_carrinho], references: [id])
+  id_carrinho String
+  produtos Produtos @relation(fields: [id_produto], references: [id])
+  id_produto String
+
+  data_criacao   DateTime @default(now())
+  data_alteracao DateTime @updatedAt
+
+  @@map("itens_carrinho")
 }

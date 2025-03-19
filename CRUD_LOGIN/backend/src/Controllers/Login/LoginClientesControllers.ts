@@ -11,6 +11,13 @@ class LoginClientesControllers {
         })
         return res.json(resposta)        
     }
+    
+    async verificaTokenClientes(req: Request, res: Response){
+        const id = req.usuarioId
+        const enviarDadosServices = new LoginClientesServices()
+        const resposta = await enviarDadosServices.verificaTokenCliente(id)
+        return res.json(resposta)        
+    }
 
 }
 

@@ -7,8 +7,19 @@ import CRUD from '../imagens/crud.webp'
 
 export default function Cabecalho() {
 
-    const { verificarToken, autenticado } = useContext(AutenticadoContexto)
-    verificarToken()
+    const {autenticado, verificarTokenCliente, verificarToken } = useContext(AutenticadoContexto)
+
+    const [tipo, setTipo] = useState('')
+    useEffect(() => {
+        const tipoU = localStorage.getItem('@funcionario')
+        setTipo(JSON.parse(tipoU))
+    }, [tipo])
+
+    if (tipo === true) {
+        verificarToken()
+    } else {
+        verificarTokenCliente()
+    }
 
     const navigator = useNavigate()
 
@@ -37,6 +48,7 @@ export default function Cabecalho() {
                         <>
                             <Link to=''>Início</Link>
                             <Link to=''>Quem Somos</Link>
+                            <Link to='/VisualizaProdutos'>Visualiza Produtos</Link>
                             <Link to='/LoginClientes'>Área do Cliente</Link>
                             <Link to='/LoginFuncionarios'>Área do Colaborador</Link>
                         </>
@@ -44,13 +56,14 @@ export default function Cabecalho() {
                     {(autenticado === true && funcionario === true) && (
                         <>
                             <Link to='/CadastroProdutos'>Cadastro de Produtos</Link>
+                            <Link to='/VisualizaProdutos'>Visualiza Produtos</Link>
                             <Link to=''>Visualiza Pedidos</Link>
                         </>
                     )}
                     {(autenticado === true && cliente === true) && (
                         <>
                             <Link to='/VisualizaProdutos'>Visualiza Produtos</Link>
-                            <Link to=''>Realizar Pedidos</Link>
+                            <Link to='/Carrinho'>Carrinho</Link>
                         </>
                     )}                    
                     {autenticado === true && (

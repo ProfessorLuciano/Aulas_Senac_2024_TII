@@ -7,6 +7,7 @@ import DashBoard from '../DashBoard'
 import EditarUsuarios from '../EditarUsuarios/index'
 import CadastroProdutos from '../CadastroProdutos'
 import VisualizaProdutos from '../VisualizaProdutos'
+import Carrinho from '../Carrinho'
 
 export default function Autenticado() {
     return (
@@ -17,6 +18,7 @@ export default function Autenticado() {
                 <Route path='/EditarUsuarios/:id' element={< EditarUsuarios />} />
                 <Route path='/CadastroProdutos' element={< CadastroProdutos />} />
                 <Route path='/VisualizaProdutos' element={< VisualizaProdutos />} />
+                <Route path='/Carrinho' element={< Carrinho />} />
 
                 <Route path='*' element={< DashBoard />} />
             </Routes>
