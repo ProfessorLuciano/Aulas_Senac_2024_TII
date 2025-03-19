@@ -41,7 +41,7 @@ export default function VisualizaProdutos() {
         // eslint-disable-next-line
     }, [])
 
-    async function adCarrinho(id1) {        
+    async function adCarrinho(id1) {
         if (autenticado !== true) {
             navegar('/LoginClientes')
         } else if (existePedido === false) {
@@ -57,6 +57,9 @@ export default function VisualizaProdutos() {
                 localStorage.setItem('@npedido', JSON.stringify(resposta.data.n_pedido))
                 localStorage.setItem('@id_pedido', JSON.stringify(resposta.data.id))
                 setExistePedido(true)
+                toast.success('Carrinho Criado Com Sucesso ', {
+                    toastId: 'ToastID'
+                })
             } catch (err) {
                 console.log(err)
             }
@@ -82,7 +85,7 @@ export default function VisualizaProdutos() {
             }
         }
     }
-
+    console.log(tipo)
     return (
         <div className='conteinerGeralVisualizaProdutos'>
             <h1>Visualizar Produtos</h1>
@@ -93,7 +96,9 @@ export default function VisualizaProdutos() {
                             <img src={`http://localhost:3333/files/${item.banner}`} alt='' />
                             <span>{item.nome}</span>
                             <span>{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(item.preco)}</span>
-                            <button onClick={() => adCarrinho(item.id)}>Adicionar</button>
+                            {(tipo !== true || tipo === null) && (
+                                <button onClick={() => adCarrinho(item.id)}>Adicionar</button>
+                            )}
                         </div>
                     )
                 })}

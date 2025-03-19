@@ -1,3 +1,4 @@
+import { ItemsCarrinho } from './../../../../../../Aulas_Senac_2024_TII/CRUD_LOGIN/backend/node_modules/.prisma/client/index.d';
 import prismaClient from '../../Prisma'
 
 
@@ -49,6 +50,50 @@ class PedidosServices{
             }
         })
         return({dados: 'Item Adicionado Com Sucesso'})
+    }
+
+    async visualizaPedidosClientesNumero(id: string){
+        const resposta = await prismaClient.carrinho.findMany({
+            where: {
+                id_cliente: id
+            },
+            select: {
+                id: true,
+                n_pedido: true,
+                status: true,
+                valor_total: true,
+                itens: {
+                    select: {
+                        quantidade: true,
+                        valor: true,
+                        produtos: {
+                            select: {
+                                nome: true,
+                                preco: true,
+                                altura: true,
+                                largura: true,
+                                comprimento: true,
+                                peso: true
+                            }
+                        }
+                    }
+                },                    
+                cliente: {
+                    select: {
+                        nome: true,
+                        cpf: true,
+                        cep: true,
+                        rua: true,
+                        numero: true,
+                        complemento: true,
+                        bairro: true,
+                        cidade: true,
+                        estado: true
+                    }
+                }
+            }
+        })
+        return resposta
     }
 }
 

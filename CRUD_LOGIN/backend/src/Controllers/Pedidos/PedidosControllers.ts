@@ -25,6 +25,14 @@ class PedidosControllers {
         })
         return res.json(resposta)
     }
+    
+    async visualizaPedidosClientesNumero(req: Request, res: Response){
+        const id = req.usuarioId
+        const enviaDadosServices = new PedidosServices()
+        const resposta = await enviaDadosServices.visualizaPedidosClientesNumero(id)
+        return res.json(resposta)
+
+    }
 }
 
 export { PedidosControllers }
