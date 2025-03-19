@@ -9,6 +9,7 @@ import { LoginUsuariosControllers } from './Controllers/Login/LoginUsuariosContr
 import { ProdutosControllers } from './Controllers/Produtos/ProdutosControllers'
 import { ClientesController } from './Controllers/Clientes/ClientesControllers'
 import { LoginClientesControllers } from './Controllers/Login/LoginClientesControllers'
+import { PedidosControllers } from './Controllers/Pedidos/PedidosControllers'
 
 import { estaAutenticado } from './middleware/estaAutenticado'
 const router = Router()
@@ -23,21 +24,24 @@ router.put('/AlterarDadosUsuarios', estaAutenticado, new UsuariosControllers().a
 router.delete('/ApagarUsuario/:id', estaAutenticado, new UsuariosControllers().apagarUsuarios)
 
 //Rotas de Grupos
-router.post('/CadastrarGrupos', estaAutenticado, new GruposControllers().cadastrarGrupos)
+router.post('/CadastrarGrupos', new GruposControllers().cadastrarGrupos)
 router.get('/ListarGrupos', new GruposControllers().listarGrupos)
 
 //Rotas de Login
 router.post('/LoginUsuarios', new LoginUsuariosControllers().loginUsuarios)
 router.get('/VerificaToken', estaAutenticado, new LoginUsuariosControllers().verificaToken)
 router.post('/LoginClientes', new LoginClientesControllers().loginClientes)
+router.get('/VerificaTokenClientes', estaAutenticado, new LoginClientesControllers().verificaTokenClientes)
 
 //Rotas de Produtos
 router.post('/CadastrarProdutos', estaAutenticado, upload.single('file'), new ProdutosControllers().cadastrarProdutos)
-router.get('/ConsultarProdutos', estaAutenticado, new ProdutosControllers().consultarProdutos)
+router.get('/ConsultarProdutos', new ProdutosControllers().consultarProdutos)
 
 //Rotas de Clientes
 router.post('/CadastrarClientes', new ClientesController().cadastrarClientes)
 
-
+//Rotas de Pedidos
+router.post('/RealizarPedidos', new PedidosControllers().criarPedidos)
+router.post('/AdicionarItensPedidos', new PedidosControllers().adcionarItensPedido)
 
 export default router

@@ -1,27 +1,40 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { AutenticadoContexto } from '../Contexts/authContexts'
 import { Link } from 'react-router-dom'
 import './estilo.loginClientes.scss'
 import { toast } from 'react-toastify'
+import { IMaskInput } from 'react-imask'
 
 export default function LoginClientes() {
 
-    const { loginClientes, verificarToken } = useContext(AutenticadoContexto)
-    verificarToken()
+   const { loginClientes, verificarTokenCliente, verificarToken } = useContext(AutenticadoContexto)
+   
+       const [tipo, setTipo] = useState('')
+       useEffect(() => {
+           const tipoU = localStorage.getItem('@funcionario')
+           setTipo(JSON.parse(tipoU))
+       }, [tipo])
+   
+       if (tipo === true) {
+           verificarToken()
+       } else {
+           verificarTokenCliente()
+       }
 
-    const [cpf, setCpf] = useState('')
+    const [cpfMask, setCpfMask] = useState('')
     const [password, setPassword] = useState('')
 
     async function dadosLogin(e) {
         e.preventDefault()
-        if (!cpf || !password) {
+        if (!cpfMask || !password) {
             toast.warning('Preencha todos os campos')
             return
         }
         try {
+            const cpf = cpfMask.match(/\d/g).join("")
             await loginClientes(cpf, password)
         } catch (err) {
-            
+
         }
     }
 
@@ -29,11 +42,12 @@ export default function LoginClientes() {
         <div className='conteinerLoginFuncionariosGeral'>
             <h1>Pagina de Login Clientes</h1>
             <form onSubmit={dadosLogin}>
-                <input
+                <IMaskInput
                     type="text"
+                    mask='000.000.000-00'
                     placeholder='Digite o CPF'
-                    value={cpf}
-                    onChange={(e) => setCpf(e.target.value)}
+                    value={cpfMask}
+                    onChange={(e) => setCpfMask(e.target.value)}
                 />
 
                 <input

@@ -41,6 +41,20 @@ class LoginClientesServices {
             cliente: cpfExiste.cliente,
             token: token
         }
+
+    }
+    
+    async verificaTokenCliente(id: string) {
+        const resposta = await prismaClient.clientes.findFirst({
+            where: {
+                id: id
+            },
+            select: {
+                id: true,
+                nome: true
+            }
+        })
+        return resposta
     }
 }
 
