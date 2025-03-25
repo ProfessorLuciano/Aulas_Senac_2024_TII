@@ -1,4 +1,3 @@
-import { ItemsCarrinho } from './../../../../../../Aulas_Senac_2024_TII/CRUD_LOGIN/backend/node_modules/.prisma/client/index.d';
 import prismaClient from '../../Prisma'
 
 
@@ -51,6 +50,17 @@ class PedidosServices{
             }
         })
         return({dados: 'Item Adicionado Com Sucesso'})
+    }
+
+    async buscarPedidosCliente(id: string){
+        const resposta = await prismaClient.carrinho.findMany({
+            where: {
+                id_cliente: id
+            }, orderBy: {
+                n_pedido: 'asc'
+            }
+        })
+        return resposta
     }
 }
 
