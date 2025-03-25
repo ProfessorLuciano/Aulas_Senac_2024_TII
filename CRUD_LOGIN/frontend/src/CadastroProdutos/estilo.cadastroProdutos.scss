@@ -1,0 +1,38 @@
+.conteinerGeralCadastroProdutos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+        width: 100%;
+        background-color: #ecf409;
+        color: #1100ff;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        margin-top: 1rem;
+
+        input {
+            margin-top: 1rem;
+            text-align: center;
+            border-radius: 0.2rem;
+            border-width: 0.01rem;
+            height: 2rem;
+        }
+        
+        /*button {
+            margin-top: 1rem;
+            height: 2rem;
+            font-weight: bold;
+            color: #FFFFFF;
+            background-color: #0169fa;
+            border-radius: 0.2rem;
+            border-width: 0;
+        }*/
+    }
+}

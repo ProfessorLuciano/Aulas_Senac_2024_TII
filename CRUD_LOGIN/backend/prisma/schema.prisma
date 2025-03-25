@@ -1,0 +1,120 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  //provider = "postgresql"
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model CadastrarUsuarios {
+  id          String  @id @default(uuid())
+  nome        String
+  email       String
+  senha       String
+  funcionario Boolean @default(true)
+  cliente     Boolean @default(false)
+
+  //data_criacao   DateTime @default(now()) @db.Timestamptz()
+  data_criacao   DateTime @default(now())
+  //data_alteracao DateTime @updatedAt @db.Timestamptz()
+  data_alteracao DateTime @updatedAt
+
+  grupos   CadastrarGrupos? @relation(fields: [idGrupos], references: [id])
+  idGrupos String
+
+  @@map("cadastro_usuarios")
+}
+
+model CadastrarGrupos {
+  id   String @id @default(uuid())
+  nome String
+
+  //data_criacao   DateTime @default(now()) @db.Timestamptz()
+  data_criacao   DateTime @default(now())
+  //data_alteracao DateTime @updatedAt @db.Timestamptz()
+  data_alteracao DateTime @updatedAt
+
+  usuarios CadastrarUsuarios[]
+
+  @@map("cadastro_grupos")
+}
+
+model Produtos {
+  id          String  @id @default(uuid())
+  nome        String
+  preco       String
+  altura      String?
+  largura     String?
+  comprimento String?
+  peso        String?
+  banner      String
+
+  itens ItemsCarrinho[]
+
+  data_criacao   DateTime @default(now())
+  data_alteracao DateTime @updatedAt
+
+  @@map("produtos")
+}
+
+model Clientes {
+  id          String  @id @default(uuid())
+  nome        String
+  cpf         String
+  email       String
+  password    String
+  cep         String
+  rua         String
+  numero      String
+  complemento String?
+  bairro      String
+  cidade      String
+  estado      String
+  funcionario Boolean @default(true)
+  cliente     Boolean @default(false)
+
+  carrinho Carrinho[]
+
+  data_criacao   DateTime @default(now())
+  data_alteracao DateTime @updatedAt
+
+  @@map("clientes")
+}
+
+model Carrinho {
+  id          String   @id @default(uuid())
+  n_pedido    Int      @unique @default(autoincrement())
+  valor_total Decimal? @db.Decimal(9, 2)
+  status      String   @default("Aguardando")
+  draft       Boolean  @default(true)
+  entrega     Boolean  @default(false)
+  aceito      Boolean  @default(false)
+
+  itens ItemsCarrinho[]
+  cliente Clientes @relation(fields: [id_cliente], references: [id])
+  id_cliente String
+  
+
+  data_criacao   DateTime @default(now())
+  data_alteracao DateTime @updatedAt
+
+  @@map("carrinho")
+}
+
+model ItemsCarrinho {
+  id         String  @id @default(uuid())
+  quantidade Int @default(1)
+  valor      Decimal @db.Decimal(9, 2)
+
+  carrinho Carrinho @relation(fields: [id_carrinho], references: [id])
+  id_carrinho String
+  produtos Produtos @relation(fields: [id_produto], references: [id])
+  id_produto String
+
+  data_criacao   DateTime @default(now())
+  data_alteracao DateTime @updatedAt
+
+  @@map("itens_carrinho")
+}

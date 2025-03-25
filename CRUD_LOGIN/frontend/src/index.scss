@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    background-image: linear-gradient(to right, var(--verde), var(--amarelo), var(--vermelho));
+    --verde: #00AB4E;
+    --vermelho: #EE302F;
+    --amarelo: #FFCB04;
+    --azul: #0033ff;
+    --branco: #FFFFFF;
+    --preto: #000000;
+    --cardShadow: #e8a406;
+    --p_cardprodutos: #e86406;
+  }
