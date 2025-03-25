@@ -22,7 +22,10 @@ export default function VisualizaProdutos() {
         const clienteU = localStorage.getItem('@id')
         setIdCliente(JSON.parse(clienteU))
         const pedidoU = localStorage.getItem('@npedido')
-        setNPedido(JSON.parse(pedidoU))
+        if (pedidoU !== null) {
+            setNPedido(JSON.parse(pedidoU))
+            setExistePedido(true)
+        }
     }, [n_pedido])
 
     if (tipo === true) {
