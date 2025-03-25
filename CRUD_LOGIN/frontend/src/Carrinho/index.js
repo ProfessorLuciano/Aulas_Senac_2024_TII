@@ -24,9 +24,10 @@ export default function Carrinho() {
             }
             buscarPedidosCliente()
         } catch (err) {
-            
+                 
         }
-    }, [])
+        // eslint-disable-next-line
+    }, [dados])
 
 
 
@@ -36,9 +37,9 @@ export default function Carrinho() {
             <table className='tabelaClasse'>
                 <thead>
                     <tr>
-                        <td>Número Pedido</td>
-                        <td>Status Pedido</td>
-                        <td>Ações</td>
+                        <th>Número Pedido</th>
+                        <th>Status Pedido</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
             </table>

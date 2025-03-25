@@ -61,7 +61,9 @@ export default function VisualizaProdutos() {
                     toastId: 'ToastID'
                 })
             } catch (err) {
-                console.log(err)
+                toast.error(err.response.data.error, {
+                    toastId: 'ToastID'
+                })
             }
         } else {
             try {

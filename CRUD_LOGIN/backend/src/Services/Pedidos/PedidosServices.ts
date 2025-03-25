@@ -15,6 +15,17 @@ interface AdicionarItensPedidos{
 
 class PedidosServices{
     async criarPedidos({id_cliente, id_produto, valor}: CriarPedidos){
+
+        const pedidoAberto = await prismaClient.carrinho.findFirst({
+            where: {
+                id_cliente: id_cliente,
+            }
+        })
+
+        if(pedidoAberto){
+            throw new Error ('Existe Pedido Em Aberto')
+        }
+
         const resposta = await prismaClient.carrinho.create({
             data:{
                 id_cliente: id_cliente,
