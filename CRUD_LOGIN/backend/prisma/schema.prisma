@@ -108,7 +108,7 @@ model ItemsCarrinho {
   quantidade Int @default(1)
   valor      Decimal @db.Decimal(9, 2)
 
-  carrinho Carrinho @relation(fields: [id_carrinho], references: [id])
+  carrinho Carrinho @relation(fields: [id_carrinho], references: [id], onDelete: Cascade)
   id_carrinho String
   produtos Produtos @relation(fields: [id_produto], references: [id])
   id_produto String

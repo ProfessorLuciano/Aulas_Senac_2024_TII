@@ -44,5 +44,7 @@ router.post('/CadastrarClientes', new ClientesController().cadastrarClientes)
 router.post('/RealizarPedidos', new PedidosControllers().criarPedidos)
 router.post('/AdicionarItensPedidos', new PedidosControllers().adcionarItensPedido)
 router.get('/BuscarPedidosCliente', estaAutenticado, new PedidosControllers().buscarPedidosCliente)
+router.delete('/ApagarCarrinho/:id', estaAutenticado, new PedidosControllers().apagarCarrinho)
+router.post('/visualizaPedidoClienteUnico', estaAutenticado, new PedidosControllers().visualizaPedidoClienteUnico)
 
 export default router

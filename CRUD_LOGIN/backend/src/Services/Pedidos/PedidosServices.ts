@@ -73,6 +73,39 @@ class PedidosServices{
         })
         return resposta
     }
+
+    async visualizaPedidoClienteUnico(id: string){
+        const resposta = await prismaClient.carrinho.findFirst({
+            where: {
+                id: id
+            },
+            select: {
+                id: true,
+                n_pedido: true,
+                itens: {
+                    select: {
+                        quantidade: true,
+                        valor: true,
+                        produtos: {
+                            select: {
+                                nome: true
+                            }
+                        }
+                    }                    
+                }                
+            }
+        })
+        return resposta
+    }
+
+    async apagarCarrinho(id: string){ 
+        await prismaClient.carrinho.delete({
+            where: {
+                id: id
+            }
+        })
+        return ({dados: 'Pedido Apagado com Sucesso'})
+    }
 }
 
 export {PedidosServices}

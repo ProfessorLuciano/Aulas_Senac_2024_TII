@@ -3,5 +3,176 @@
     flex-direction: column;
     align-items: center;
 
-  
+    .dadosTabelasPedidos {
+        align-items: center;
+        border: 2px solid var(--preto);
+        width: 95%;
+        margin-top: 1rem;
+        margin-bottom: 3rem;
+
+        th {
+            font-size: 1.5rem;
+            text-align: center;
+            font-weight: bold;
+            border: 2px solid var(--preto);
+            background-color: var(--azul);
+            color: var(--branco);
+            padding: 0.5rem;
+        }
+
+        td {
+            background-color: var(--laranjafraco);
+            font-size: 1rem;
+            font-weight: bold;
+            text-align: center;
+            font-weight: bold;
+            border: 2px solid var(--preto);
+            text-transform: uppercase;
+            padding: 0.5rem;
+
+        }
+
+        button {
+            font-size: 1rem;
+            background-color: transparent;
+            padding: 1rem;
+            color: var(--azul);
+            border-width: 0;
+            cursor: pointer;
+        }
+
+        .corStatusAcampadoPendente {
+            background-color: var(--amarelo);
+        }
+
+        .corStatusAcampadoAtivo {
+            background-color: var(--verde);
+        }
+
+        .corStatusAcampadoInativo {
+            background-color: var(--vermelho);
+        }
+    }  
+}
+
+
+.Modal {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    background-color: #d5fffb;
+
+    .conteinerModal {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        h1 {
+            width: 50%;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+            background-image: linear-gradient(to right, var(--verde), var(--amarelo), var(--vermelho));
+            color: var(--branco);
+            padding: 0.5rem;
+            border-radius: 0.8rem;
+            text-align: center;
+        }
+        
+        .botoesAcao{
+            display: flex;
+            justify-content: center;
+            width: 50%;
+
+            .botaoSairModal {
+                height: 4rem;
+                width: 20%;
+                background-color: var(--vermelho);
+                font-size: 1.2rem;
+                font-weight: bold;
+                color: var(--branco);
+                border-radius: 0.5rem;
+                margin: 4rem;
+                text-align: center;
+                text-decoration: none;
+                border: 0;
+            }
+    
+            .botaoEnviarModal {
+                height: 4rem;
+                width: 20%;
+                background-color: var(--azul);
+                font-size: 1.2rem;
+                font-weight: bold;
+                color: var(--branco);
+                border-radius: 0.5rem;
+                margin: 4rem;
+                text-align: center;
+                text-decoration: none;
+                border: 0;
+            }
+        }
+        
+        .dadosTabelasPedidosModal {
+            align-items: center;
+            border: 2px solid var(--preto);
+            width: 95%;
+            margin-top: 1rem;
+            margin-bottom: 3rem;
+    
+            th {
+                font-size: 1.5rem;
+                text-align: center;
+                font-weight: bold;
+                border: 2px solid var(--preto);
+                background-color: var(--azul);
+                color: var(--branco);
+                padding: 0.5rem;
+            }
+    
+            td {
+                background-color: var(--laranjafraco);
+                font-size: 1rem;
+                font-weight: bold;
+                text-align: center;
+                font-weight: bold;
+                border: 2px solid var(--preto);
+                text-transform: uppercase;
+                padding: 0.5rem;
+    
+            }
+    
+            button {
+                font-size: 1rem;
+                background-color: transparent;
+                padding: 1rem;
+                color: var(--azul);
+                border-width: 0;
+                cursor: pointer;
+            }
+    
+            .corStatusAcampadoPendente {
+                background-color: var(--amarelo);
+            }
+    
+            .corStatusAcampadoAtivo {
+                background-color: var(--verde);
+            }
+    
+            .corStatusAcampadoInativo {
+                background-color: var(--vermelho);
+            }
+        }
+    }
+}
+
+.Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rebeccapurple;
 }
