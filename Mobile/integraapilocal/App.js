@@ -15,12 +15,12 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text>Produtos</Text>
+      <Text style={styles.textoGeral1}>Produtos</Text>
       <StatusBar backgroundColor='#FFFFFF' barStyle='dark-content' translucent={false} />
       {dadosProdutos.map((item) => {
         return (
           <>
-            <Text key={item.id}>Nome: {item.nome} - {item.preco}</Text>
+            <Text style={styles.textoGeral} key={item.id}>{item.nome} - {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(item.preco)}</Text>
           </>
         )
       })}
@@ -35,4 +35,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  textoGeral: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    marginTop: 13
+  },
+  textoGeral1: {
+    fontSize: 35,
+    fontWeight: 'bold',
+    marginTop: 13,
+    color: 'red'
+  }
 });
