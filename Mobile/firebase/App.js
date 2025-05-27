@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   StyleSheet,
   StatusBar,
@@ -49,13 +49,42 @@ export default function App() {
       alert('Preencha todos os campos')
       return
     }
-    const usuariosRef = ref(database, 'usuarios')
-    const novaRef = push(usuariosRef)
-    await set(novaRef, { nome, cidade })
+
+    if (editandoId) {
+      const userRef = ref(database, `usuarios/${editandoId}`)
+      await update(userRef, { nome, cidade })
+      setEditandoId(null)
+    } else {
+      const usuariosRef = ref(database, 'usuarios')
+      const novaRef = push(usuariosRef)
+      await set(novaRef, { nome, cidade })
+    }
 
     setNome('')
     setCidade('')
     Keyboard.dismiss()
+  }
+
+  useEffect(() => {
+    const usuariosRef = ref(database, 'usuarios')
+    onValue(usuariosRef, snapshot => {
+      const data = snapshot.val()
+      const lista = data
+        ? Object.entries(data).map(([id, info]) => ({ id, ...info }))
+        : []
+      setUsuarios(lista)
+    })
+  }, [])
+
+  function prepararEdicao(item) {
+    setNome(item.nome)
+    setCidade(item.cidade)
+    setEditandoId(item.id)
+  }
+
+  async function excluirUsuario(id) {
+    const userRef = ref(database, `usuarios/${id}`)
+    await remove(userRef)
   }
 
   return (
@@ -148,7 +177,7 @@ const styles = StyleSheet.create({
   },
   acoes: {
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-around',
     gap: 20, marginTop: 5
   },
   editar: {
