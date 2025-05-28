@@ -27,13 +27,7 @@ import {
 } from 'firebase/database'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBSWmXYMzHLTnmDct9xyNxgf_5zORQ6VOU",
-  authDomain: "aulasenac-ad1ed.firebaseapp.com",
-  databaseURL: "https://aulasenac-ad1ed-default-rtdb.firebaseio.com",
-  projectId: "aulasenac-ad1ed",
-  storageBucket: "aulasenac-ad1ed.firebasestorage.app",
-  messagingSenderId: "155450134981",
-  appId: "1:155450134981:web:06a9ec54ff11bfb2a0fbac"
+ 
 }
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp()
 const database = getDatabase(app)
@@ -48,44 +42,16 @@ export default function App() {
     if (!nome || !cidade) {
       alert('Preencha todos os campos')
       return
-    }
-
-    if (editandoId) {
-      const userRef = ref(database, `usuarios/${editandoId}`)
-      await update(userRef, { nome, cidade })
-      setEditandoId(null)
-    } else {
+    }   
       const usuariosRef = ref(database, 'usuarios')
       const novaRef = push(usuariosRef)
       await set(novaRef, { nome, cidade })
-    }
+  
 
     setNome('')
     setCidade('')
     Keyboard.dismiss()
-  }
-
-  useEffect(() => {
-    const usuariosRef = ref(database, 'usuarios')
-    onValue(usuariosRef, snapshot => {
-      const data = snapshot.val()
-      const lista = data
-        ? Object.entries(data).map(([id, info]) => ({ id, ...info }))
-        : []
-      setUsuarios(lista)
-    })
-  }, [])
-
-  function prepararEdicao(item) {
-    setNome(item.nome)
-    setCidade(item.cidade)
-    setEditandoId(item.id)
-  }
-
-  async function excluirUsuario(id) {
-    const userRef = ref(database, `usuarios/${id}`)
-    await remove(userRef)
-  }
+  } 
 
   return (
     <View style={styles.container}>
