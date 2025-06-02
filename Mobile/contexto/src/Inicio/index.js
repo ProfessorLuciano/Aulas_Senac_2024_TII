@@ -50,8 +50,8 @@ export default function Inicio() {
                     onChangeText={setPassword}
                 />
                 <TouchableOpacity onPress={logarSistema} style={styles.botao}><Text style={styles.textoBotao} >Enviar</Text></TouchableOpacity>
-                <TouchableOpacity onPress={pegarToken} style={styles.botao}><Text style={styles.textoBotao} >Token</Text></TouchableOpacity>
-                <TouchableOpacity onPress={limparToken} style={styles.botao}><Text style={styles.textoBotao} >Limpar</Text></TouchableOpacity>
+                <TouchableOpacity onPress={pegarToken} style={styles.botaoToken}><Text style={styles.textoBotao} >Token</Text></TouchableOpacity>
+                <TouchableOpacity onPress={limparToken} style={styles.botaoLimpar}><Text style={styles.textoBotao} >Limpar</Text></TouchableOpacity>
                 <Text>{token}</Text> 
             </View>
         </SafeAreaView>
@@ -78,6 +78,18 @@ const styles = StyleSheet.create({
     botao: {
         marginTop: 5,
         backgroundColor: 'blue',
+        height: 60,
+        borderRadius: 8
+    },
+    botaoToken: {
+        marginTop: 5,
+        backgroundColor: 'green',
+        height: 60,
+        borderRadius: 8
+    },
+    botaoLimpar: {
+        marginTop: 5,
+        backgroundColor: 'red',
         height: 60,
         borderRadius: 8
     },
