@@ -13,7 +13,11 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.mundoslackware.gps",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -28,14 +32,15 @@
     },
     "extra": {
       "eas": {
-        "projectId": "f743d9d0-38f5-4568-8a21-8b0400e1ef6b"
+        "projectId": "51d54358-7659-4303-8c83-9e1bd67d9792"
       }
     },
     "runtimeVersion": {
       "policy": "appVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/f743d9d0-38f5-4568-8a21-8b0400e1ef6b"
-    }
+      "url": "https://u.expo.dev/51d54358-7659-4303-8c83-9e1bd67d9792"
+    },
+    "owner": "mundoslackware"
   }
 }

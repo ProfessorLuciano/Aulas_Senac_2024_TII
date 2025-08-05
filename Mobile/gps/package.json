@@ -13,10 +13,10 @@
     "expo-keep-awake": "^14.1.4",
     "expo-location": "^18.1.6",
     "expo-status-bar": "~2.2.3",
+    "expo-updates": "~0.28.17",
     "react": "19.0.0",
     "react-native": "0.79.4",
-    "react-native-maps": "^1.7.1",
-    "expo-updates": "~0.28.17"
+    "react-native-maps": "^1.7.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
