@@ -7,7 +7,7 @@ import './estilo.visualizaProdutos.scss'
 
 export default function VisualizaProdutos() {
 
-    const { verificarTokenCliente, verificarToken, autenticado } = useContext(AutenticadoContexto)
+    const { verificarTokenCliente, verificarToken, autenticado, token } = useContext(AutenticadoContexto)
     const navegar = useNavigate()
 
     const [dados, setDados] = useState([''])
@@ -37,7 +37,11 @@ export default function VisualizaProdutos() {
 
     useEffect(() => {
         async function consultarDados() {
-            const resposta = await apiLocal.get('/ConsultarProdutos')
+            const resposta = await apiLocal.get('/ConsultarProdutos', {
+                headers:{
+                     Authorization: `Bearer ${token}`
+                }
+            })
             setDados(resposta.data)
         }
         consultarDados()
