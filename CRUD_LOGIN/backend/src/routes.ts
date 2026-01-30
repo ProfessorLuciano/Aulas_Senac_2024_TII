@@ -35,7 +35,7 @@ router.get('/VerificaTokenClientes', estaAutenticado, new LoginClientesControlle
 
 //Rotas de Produtos
 router.post('/CadastrarProdutos', estaAutenticado, upload.single('file'), new ProdutosControllers().cadastrarProdutos)
-router.get('/ConsultarProdutos', estaAutenticado, new ProdutosControllers().consultarProdutos)
+router.get('/ConsultarProdutos', new ProdutosControllers().consultarProdutos)
 
 //Rotas de Clientes
 router.post('/CadastrarClientes', new ClientesController().cadastrarClientes)
